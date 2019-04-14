@@ -5,6 +5,15 @@ const Beers = function(){
   this.beerData = [];
 }
 
+Beers.prototype.bindEvents = function(){
+  PubSub.subscribe('selected-beer', (evt)=> {
+    const selectedBeer = evt.detail;
+    console.log(this.beerData[selectedBeer]);
+    PubSub.publish('all-beers-data', [this.beerData[selectedBeer]]);
+  })
+}
+
+
 Beers.prototype.getData = function(){
   const request = new RequestHelper('https://api.punkapi.com/v2/beers');
   request.get().then((data) => {
