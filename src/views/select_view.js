@@ -5,8 +5,9 @@ const SelectView = function (element) {
 };
 
 SelectView.prototype.bindEvents = function () {
-  PubSub.subscribe('all-beers-data', (evt) => {
+  PubSub.subscribe('all-beers-data-dropdown', (evt) => {
     const allBeers = evt.detail;
+    console.log(allBeers);
     this.populate(allBeers);
   });
 
@@ -17,10 +18,11 @@ SelectView.prototype.bindEvents = function () {
 };
 
 SelectView.prototype.populate = function (allBeerNames) {
-  allBeerNames.forEach((beer, index) => {
+  allBeerNames.forEach((beer) => {
     const option = document.createElement('option');
     option.textContent = beer.name;
-    option.value = index;
+    console.log(beer.name);
+    option.value = beer.id;
     this.element.appendChild(option);
   });
 };

@@ -8,7 +8,7 @@ const Beers = function(){
 Beers.prototype.bindEvents = function(){
   PubSub.subscribe('selected-beer', (evt)=> {
     const selectedBeer = evt.detail;
-    PubSub.publish('all-beers-data', [this.beerData[selectedBeer]]);
+    PubSub.publish('all-beers-data', [this.beerData[selectedBeer-1]]);
   })
 }
 
@@ -18,6 +18,7 @@ Beers.prototype.getData = function(){
   request.get().then((data) => {
     this.beerData = data;
     PubSub.publish('all-beers-data', this.beerData)
+    PubSub.publish('all-beers-data-dropdown', this.beerData)
   });
 
 }
