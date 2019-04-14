@@ -12,7 +12,6 @@ Beers.prototype.bindEvents = function(){
   })
 }
 
-
 Beers.prototype.getData = function(){
   const request = new RequestHelper('https://api.punkapi.com/v2/beers');
   request.get().then((data) => {
@@ -20,7 +19,6 @@ Beers.prototype.getData = function(){
     PubSub.publish('all-beers-data', this.beerData)
     PubSub.publish('all-beers-data-dropdown', this.beerData)
   });
-
 }
 
 module.exports = Beers;
