@@ -8,7 +8,6 @@ const Beers = function(){
 Beers.prototype.bindEvents = function(){
   PubSub.subscribe('selected-beer', (evt)=> {
     const selectedBeer = evt.detail;
-    console.log(this.beerData[selectedBeer]);
     PubSub.publish('all-beers-data', [this.beerData[selectedBeer]]);
   })
 }
